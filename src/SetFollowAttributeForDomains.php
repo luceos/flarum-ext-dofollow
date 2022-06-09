@@ -16,7 +16,7 @@ class SetFollowAttributeForDomains
 
     public function __invoke(Renderer $renderer, $context, string $xml)
     {
-        return Utils::replaceAttributes($xml, 'URL', function ($attributes) {
+        $xml = Utils::replaceAttributes($xml, 'URL', function ($attributes) {
             $uri = isset($attributes['url'])
                 ? new Uri($attributes['url'])
                 : null;
@@ -25,5 +25,7 @@ class SetFollowAttributeForDomains
 
             return $attributes;
         });
+
+        return $xml;
     }
 }

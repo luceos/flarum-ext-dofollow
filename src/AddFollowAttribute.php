@@ -9,12 +9,21 @@ class AddFollowAttribute
 {
     public function __invoke(Configurator $configurator)
     {
-        $dom = $configurator->tags['URL']->template->asDOM();
+        /** @var Configurator\Items\Template $template */
+        $template = $configurator->tags['URL']->template;
+        $dom = $template->asDOM();
 
         /** @var Element $a */
-        foreach ($dom->getElementByTagName('a') as $a) {
-//            $a->removeAttribute('rel');
-            $a->prependXslIf('$FOLLOW')->appendXslAttribute('rel', 'dofollow');
+        foreach ($dom->getElementsByTagName('a') as $a) {
+            $a->removeAttribute('rel');
+
+            $a
+                ->prependXslIf('$FOLLOW=1')
+                ->appendXslAttribute('rel', 'dofollow ugc noopener');
+
+            $a
+                ->prependXslIf('not($FOLLOW) or $FOLLOW=0')
+                ->appendXslAttribute('rel', 'ugc noopener');
         }
 
         $dom->saveChanges();
