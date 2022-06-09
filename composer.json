@@ -1,23 +1,30 @@
 {
-    "name": "franzl/flarum-open-links-in-new-tab",
-    "description": "Open all links in post contents in a new tab or window",
+    "name": "luceos/flarum-ext-dofollow",
+    "description": "A Flarum extension that sets dofollow for same domain or specified domains on links.",
     "type": "flarum-extension",
     "require": {
-        "flarum/core": "^0.1.0-beta.10"
+        "flarum/core": "^1.3.0"
     },
     "license": "MIT",
     "authors": [
         {
             "name": "Franz Liedke",
             "email": "franz@develophp.org"
+        },
+        {
+            "name": "Daniël Klabbers",
+            "email": "daniel@klabbers.email",
+            "homepage": "http://luceos.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Luceos\\DoFollow\\": "src/"
+        }
+    },
     "extra": {
-        "branch-alias": {
-            "dev-master": "0.1.x-dev"
-        },
         "flarum-extension": {
-            "title": "Open Links in New Tab",
+            "title": "Dofollow links",
             "icon": {
                 "name": "fas fa-link"
             }
