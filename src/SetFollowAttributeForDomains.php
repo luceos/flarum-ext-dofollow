@@ -21,8 +21,14 @@ class SetFollowAttributeForDomains
                 ? new Uri($attributes['url'])
                 : null;
 
-            $attributes['FOLLOW'] = $this->url->getHost() === $uri?->getHost() ? 1 : 0;
-            $attributes['BLANK'] = $this->url->getHost() !== $uri?->getHost() ? 1 : 0;
+            $rel = 'nofollow ugc noopener';
+
+            if ($this->url->getHost() === $uri?->getHost()) {
+                $rel = 'ugc';
+            }
+
+            $attributes['rel'] = $rel;
+            $attributes['target'] = $this->url->getHost() !== $uri?->getHost() ? '_blank' : '_self';
 
             return $attributes;
         });

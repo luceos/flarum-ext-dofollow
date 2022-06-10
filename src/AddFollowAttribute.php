@@ -15,22 +15,8 @@ class AddFollowAttribute
 
         /** @var Element $a */
         foreach ($dom->getElementsByTagName('a') as $a) {
-            $a->removeAttribute('rel');
-
-            $a
-                ->prependXslIf('$BLANK')
-                ->appendXslAttribute('target', '_blank');
-
-            $a
-                ->prependXslIf('$FOLLOW and $BLANK')
-                ->appendXslAttribute('rel', 'noopener');
-            $a
-                ->prependXslIf('$FOLLOW')
-                ->appendXslAttribute('rel', '');
-
-            $a
-                ->prependXslIf('not($FOLLOW) or $FOLLOW=0')
-                ->appendXslAttribute('rel', 'ugc noopener');
+            $a->prependXslCopyOf('@target');
+            $a->prependXslCopyOf('@rel');
         }
 
         $dom->saveChanges();
