@@ -22,6 +22,7 @@ class SetFollowAttributeForDomains
                 : null;
 
             $attributes['FOLLOW'] = $this->url->getHost() === $uri?->getHost() ? 1 : 0;
+            $attributes['BLANK'] = $this->url->getHost() !== $uri?->getHost() ? 1 : 0;
 
             return $attributes;
         });

@@ -18,8 +18,15 @@ class AddFollowAttribute
             $a->removeAttribute('rel');
 
             $a
-                ->prependXslIf('$FOLLOW=1')
-                ->appendXslAttribute('rel', 'dofollow ugc noopener');
+                ->prependXslIf('$BLANK')
+                ->appendXslAttribute('target', '_blank');
+
+            $a
+                ->prependXslIf('$FOLLOW and $BLANK')
+                ->appendXslAttribute('rel', 'noopener');
+            $a
+                ->prependXslIf('$FOLLOW')
+                ->appendXslAttribute('rel', '');
 
             $a
                 ->prependXslIf('not($FOLLOW) or $FOLLOW=0')
