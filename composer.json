@@ -3,7 +3,7 @@
     "description": "A Flarum extension that sets dofollow for same domain or specified domains on links.",
     "type": "flarum-extension",
     "require": {
-        "flarum/core": "^1.3.0"
+        "flarum/core": "^1.4.0"
     },
     "license": "MIT",
     "authors": [
